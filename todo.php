@@ -8,6 +8,7 @@ do {
     // Iterate through list items
     foreach ($items as $key => $item) {
         // Display each item and a newline
+        $key++;
         echo "[{$key}] {$item}\n";
     }
 
@@ -29,6 +30,7 @@ do {
         echo 'Enter item number to remove: ';
         // Get array key
         $key = trim(fgets(STDIN));
+        $key--;
         // Remove from array
         unset($items[$key]);
     }
@@ -40,3 +42,5 @@ echo "Goodbye!\n";
 
 // Exit with 0 errors
 exit(0);
+
+?>
