@@ -34,8 +34,23 @@ function get_input($upper = FALSE)
 
 // Add a (S)ort option to your menu. When it is chosen, it should call a function called sort_menu()
 
-function sort_menu()
+function sort_menu($items)
 {
+    echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered: ';
+
+        $input = get_input(TRUE);
+        if ($input == 'A') {
+            sort($items);
+        } elseif ($input == 'Z') {
+            rsort($items);
+        } elseif ($input == 'O') {
+            ksort($items);
+        } elseif ($input == 'R') {
+            krsort($items);
+        }
+
+
+        return $items;
 
 }
 
@@ -70,7 +85,8 @@ do {
         // resets array
         $items = array_values($items);
     } elseif ($input == 'S') {
-        
+        // Sort array by user input
+        $items = sort_menu($items);
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
