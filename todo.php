@@ -32,13 +32,23 @@ function get_input($upper = FALSE)
     return ($upper) ? strtoupper($result) : $result;
 }
 
+// Add a (S)ort option to your menu. When it is chosen, it should call a function called sort_menu()
+
+function sort_menu()
+{
+
+}
+
+
+
 // The loop!
 do {
     // Echo the list produced by the function
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit : ';
+    // Add a sort option
+    echo '(N)ew item, (R)emove item, (S)ort items, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -59,6 +69,8 @@ do {
         unset($items[$key - 1]);
         // resets array
         $items = array_values($items);
+    } elseif ($input == 'S') {
+        
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
