@@ -53,23 +53,8 @@ function sort_menu($items)
             case 'R':
                 krsort($items);
         }
-        // if ($input == 'A') {
-        //     sort($items);
-        // } elseif ($input == 'Z') {
-        //     rsort($items);
-        // } elseif ($input == 'O') {
-        //     ksort($items);
-        // } elseif ($input == 'R') {
-        //     krsort($items);
-        // }
-
-
         return $items;
-
 }
-
-
-
 // The loop!
 do {
     // Echo the list produced by the function
@@ -88,7 +73,6 @@ do {
         // Ask for entry
         echo 'Enter item: ';
         // Add entry to list array
-        //$items[] = get_input();
         // Give user option to place todo item at beginning/end of list..default to end if no input
         $temp = get_input();
         echo 'Would you like this item at the (B)eginning or (E)nd of you list? ';
@@ -111,6 +95,15 @@ do {
     } elseif ($input == 'S') {
         // Sort array by user input
         $items = sort_menu($items);
+
+// Allow a user to enter F at the main menu to remove the first item on the list.
+// This feature will not be added to the menu, and will be a special feature that is only available
+// to "power users".
+    } elseif ($input == 'F') {
+        array_shift($items);
+// Also add a L option that grabs and removes the last item in the list.
+    } elseif ($input == 'L') {
+        array_pop($items);
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
@@ -121,51 +114,4 @@ echo "Goodbye!\n";
 // Exit with 0 errors
 exit(0);
 
-// // Create array to hold list of todo items
-// $items = array();
-
-// // The loop!
-// do {
-//     // Iterate through list items
-//     foreach ($items as $key => $item) {
-//         // Start $key value at 1 instead of 0
-//         $key++;
-//         // Display each item and a newline
-//         echo "[{$key}] {$item}\n";
-//     }
-
-//     // Show the menu options
-//     echo '(N)ew item, (R)emove item, (Q)uit : ';
-
-//     // Get the input from user
-//     // Use trim() to remove whitespace and newlines
-//     $input = trim(fgets(STDIN));
-
-//     // Check for actionable input
-//     if (($input == 'N') || ($input == 'n')) {
-//         // Ask for entry
-//         echo 'Enter item: ';
-//         // Add entry to list array
-//         $items[] = trim(fgets(STDIN));
-//     } elseif (($input == 'R') || ($input == 'r')) {
-//         // Remove which item?
-//         echo 'Enter item number to remove: ';
-//         // Get array key
-//         $key = trim(fgets(STDIN));
-//         // subtract $key value by 1 to remove correct item
-//         $key--;
-//         // Remove from array
-//         unset($items[$key]);
-//     }
-//     // resets array
-//     $items = array_values($items);
-// // Exit when input is (Q)uit
-// } while (($input != 'Q') && ($input != 'q'));
-
-// // Say Goodbye!
-// echo "Goodbye!\n";
-
-// // Exit with 0 errors
-// exit(0);
-
-// ?>
+ ?>
