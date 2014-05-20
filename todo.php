@@ -39,15 +39,29 @@ function sort_menu($items)
     echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered: ';
 
         $input = get_input(TRUE);
-        if ($input == 'A') {
-            sort($items);
-        } elseif ($input == 'Z') {
-            rsort($items);
-        } elseif ($input == 'O') {
-            ksort($items);
-        } elseif ($input == 'R') {
-            krsort($items);
+
+        switch($input) {
+            case 'A':
+                asort($items);
+                break;
+            case 'Z':
+                arsort($items);
+                break;
+            case 'O':
+                ksort($items);
+                break;
+            case 'R':
+                krsort($items);
         }
+        // if ($input == 'A') {
+        //     sort($items);
+        // } elseif ($input == 'Z') {
+        //     rsort($items);
+        // } elseif ($input == 'O') {
+        //     ksort($items);
+        // } elseif ($input == 'R') {
+        //     krsort($items);
+        // }
 
 
         return $items;
@@ -74,7 +88,17 @@ do {
         // Ask for entry
         echo 'Enter item: ';
         // Add entry to list array
-        $items[] = get_input();
+        //$items[] = get_input();
+        // Give user option to place todo item at beginning/end of list..default to end if no input
+        $temp = get_input();
+        echo 'Would you like this item at the (B)eginning or (E)nd of you list? ';
+        $input = get_input(TRUE);
+        if ($input == 'B') {
+            array_unshift($items, $temp);
+        } elseif (($input == 'E') || ($input == FALSE)) {
+            array_push($items, $temp);
+        }
+
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
@@ -83,7 +107,7 @@ do {
         // Remove from array
         unset($items[$key - 1]);
         // resets array
-        $items = array_values($items);
+        //$items = array_values($items);
     } elseif ($input == 'S') {
         // Sort array by user input
         $items = sort_menu($items);
