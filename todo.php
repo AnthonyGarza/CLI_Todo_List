@@ -55,6 +55,21 @@ function sort_menu($items)
         }
         return $items;
 }
+
+// Add (O)pen file option
+
+function read_file()
+{
+    echo 'Enter file name/path: ';
+    $filename = get_input();
+    $filesize = filesize($filename);
+    $read = fopen($filename, 'r');
+    $list_string = fread($read, $filesize);
+    $list = explode("\n", $list_string);
+    return $list;
+    fclose($read);
+}
+
 // The loop!
 do {
     // Echo the list produced by the function
@@ -62,7 +77,7 @@ do {
 
     // Show the menu options
     // Add a sort option
-    echo '(N)ew item, (R)emove item, (S)ort items, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort items, (O)pen File, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -104,6 +119,13 @@ do {
 // Also add a L option that grabs and removes the last item in the list.
     } elseif ($input == 'L') {
         array_pop($items);
+
+    } elseif ($input == 'O') {
+        //opens file given by user
+        $new_items = read_file();
+        foreach ($new_items as $item) {
+            array_push($items, $item);
+        }
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
