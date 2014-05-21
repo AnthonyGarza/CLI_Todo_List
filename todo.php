@@ -77,7 +77,7 @@ do {
 
     // Show the menu options
     // Add a sort option
-    echo '(N)ew item, (R)emove item, (S)ort items, (O)pen File, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort items, (O)pen file, s(A)ve file, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
